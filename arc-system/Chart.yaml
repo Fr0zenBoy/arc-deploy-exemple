@@ -1,0 +1,15 @@
+dependencies:
+  - name: gha-runner-scale-set-controller
+    version: "~0.9.1"
+    repository: oci://ghcr.io/actions/actions-runner-controller-charts
+    alias: arc-controller
+
+  - name: gha-runner-scale-set
+    version: "~0.9.1"
+    repository: oci://ghcr.io/actions/actions-runner-controller-charts
+    alias: arc-runner
+
+  - name: gha-runner-scale-set
+    version: "~0.9.1"
+    repository: oci://ghcr.io/actions/actions-runner-controller-charts
+    alias: arc-dind

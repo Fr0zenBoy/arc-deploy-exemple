@@ -1,0 +1,26 @@
+arc-controller:
+  namespace: arc-system
+
+  replicaCount: 3
+
+  serviceAccount:
+    name: arc-controller
+
+  flags:
+    updateStrategy: "eventual"
+
+arc-runner:
+  namespace: arc-runners
+
+  githubConfigUrl: "https://github.com/acesso-io/go"
+
+  githubConfigSecret: pre-defined-secret
+
+arc-dind:
+  namespace: arc-runners
+
+  githubConfigUrl: "https://github.com/acesso-io/go"
+
+  githubConfigSecret: pre-defined-secret
+
+  containerMode: dind

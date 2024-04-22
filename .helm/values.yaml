@@ -16,6 +16,9 @@ arc-runner:
 
   githubConfigSecret: pre-defined-secret
 
+  controllerServiceAccount:
+    namespace: arc-system
+
 arc-dind:
   namespace: arc-runners
 
@@ -24,3 +27,6 @@ arc-dind:
   githubConfigSecret: pre-defined-secret
 
   containerMode: dind
+
+  controllerServiceAccount:
+    namespace: arc-system

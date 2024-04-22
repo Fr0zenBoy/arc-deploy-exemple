@@ -20,6 +20,8 @@ arc-runner:
     namespace: arc-system
     name: gha-rs-controller
 
+  runnerScaleSetName: "arc-runner"
+
 arc-dind:
   namespace: arc-runners
 
@@ -27,8 +29,11 @@ arc-dind:
 
   githubConfigSecret: pre-defined-secret
 
-  containerMode: dind
+  containerMode:
+    type: "dind"
 
   controllerServiceAccount:
     namespace: arc-system
     name: gha-rs-controller
+
+  runnerScaleSetName: "arc-dind"

@@ -1,2 +1,6 @@
 project: arc
 configVersion: 1
+
+---
+image: custom-runner
+dockerfile: runner.DOCKERFILE

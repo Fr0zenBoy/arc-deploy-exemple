@@ -1,6 +1,5 @@
 # Use specific images as stages for preparation
 FROM golang:1.21-alpine3.19 AS go-builder
-FROM l.gcr.io/google/bazel:latest AS bazel-base
 FROM golangci/golangci-lint:v1.57.2-alpine AS golangci-lint-base
 
 # Final base image
@@ -15,9 +14,10 @@ RUN apt-get update -y \
     lsb-release \
     git \
     curl \
-    build-essential \
+    wget \
     unzip \
     zip \
+    g++ \
     openjdk-11-jdk \
     && rm -rf /var/lib/apt/lists/*
 
@@ -27,8 +27,12 @@ COPY --from=go-builder /usr/local/go/ /usr/local/go/
 # Set the environment variable for Go
 ENV PATH="/usr/local/go/bin:${PATH}"
 
-# Copy Bazel from the Bazel base stage
-COPY --from=bazel-base /usr/bin/bazel /usr/bin/bazel
+# # Install Bazelisk
+# RUN curl -LJO "https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-amd64" \
+#     && mv bazelisk-linux-amd64 /usr/local/bin/bazel \
+#     && chmod +x /usr/local/bin/bazel
+
+COPY --from=gcr.io/bazel-public/bazel:latest /usr/local/bin/bazel /usr/bin/bazel
 
 # Copy GolangCI-Lint binary from its official image
 COPY --from=golangci-lint-base /usr/bin/golangci-lint /usr/bin/golangci-lint
